@@ -1,0 +1,431 @@
+@charset "utf-8";
+
+/*
+  1. Use a more-intuitive box-sizing model.
+*/
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/*
+    2. Remove default margin
+  */
+* {
+  margin: 0;
+}
+
+/*
+    Typographic tweaks!
+    3. Add accessible line-height
+    4. Improve text rendering
+  */
+body {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+/*
+    5. Improve media defaults
+  */
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+/*
+    6. Remove built-in form typography styles
+  */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+/*
+    7. Avoid text overflows
+  */
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+/*
+    8. Create a root stacking context
+  */
+#root,
+#__next {
+  isolation: isolate;
+}
+
+/* 9. Addendum perso */
+
+h1,
+h2,
+h3,
+h4 {
+  text-wrap: balance;
+}
+
+:where(ul, ol):not([role="list"]) {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+*> :last-child {
+  margin-bottom: 0 !important;
+}
+
+/* Fonts */
+
+@font-face {
+  font-family: "Source Sans 3";
+  src: url('../fonts/SourceSans3-VariableFont_wght.woff2');
+  font-style: normal;
+}
+
+:root {
+  --white: rgba(255, 255, 255, 1);
+  --grey100: rgba(241, 241, 241, 1);
+  --grey200: rgba(210, 210, 210, 1);
+  --grey300: rgba(165, 165, 165, 1);
+  --grey400: rgba(105, 105, 105, 1);
+  --grey500: rgba(65, 64, 66, 1);
+  --grey600: rgba(40, 40, 40, 1);
+  --black: rgba(32, 32, 32, 1);
+  --red: rgba(233, 81, 66, 1);
+
+  --container-width: min(1168px, 90vw);
+  --grid-gutter: 2rem;
+  --half-gutter: calc(var(--grid-gutter) / 2);
+}
+
+body {
+  font: 1.125rem/1.5rem "Source Sans 3", sans-serif;
+  color: var(--grey500);
+}
+
+h1,
+h2,
+h3,
+h4 {
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+h1 {
+  font-size: clamp(2.75rem, -1.0309rem + 8.642vw, 4.5rem);
+  line-height: clamp(2.75rem, 0.0494rem + 6.1728vw, 4rem);
+  margin-bottom: 3.25rem;
+
+  .small {
+    font-size: 2rem;
+    line-height: 2.25rem;
+    font-weight: 300;
+  }
+
+  .red {
+    color: var(--red);
+  }
+}
+
+h2 {
+  font-size: clamp(2rem, 1.4599rem + 1.2346vw, 2.25rem);
+  line-height: 2.5rem;
+  margin-bottom: 3.5rem;
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    width: 60px;
+    height: 4px;
+    background-color: var(--red);
+    display: block;
+    bottom: -16px;
+    left: calc(50% - 30px);
+  }
+}
+
+h3 {
+  font-size: 1.125rem;
+  line-height: 1.5rem;
+  font-weight: 600;
+  margin-bottom: .5rem;
+  letter-spacing: 0.3125rem;
+}
+
+p {
+  margin-bottom: 2.5rem;
+}
+
+.footer_title {
+  font-size: 1.125rem;
+  line-height: 1.5rem;
+  font-weight: 600;
+  margin-bottom: .75rem;
+}
+
+.container {
+  width: var(--container-width);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.row {
+  display: flex;
+  margin-left: calc(var(--half-gutter) * -1);
+  margin-right: calc(var(--half-gutter) * -1);
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  padding: 0 var(--half-gutter);
+  flex: 1 0 0;
+
+
+  img {
+    width: 140px;
+    height: 120px;
+  }
+}
+
+.column--25 {
+  flex: none;
+  width: 25%;
+}
+
+.column--33 {
+  flex: none;
+  width: 33.333%;
+}
+
+.column--40 {
+  flex: none;
+  width: 40%;
+}
+
+.column--50 {
+  flex: none;
+  width: 50%;
+}
+
+.column--auto {
+  flex: none;
+  width: auto;
+}
+
+@media screen and (max-width: 700px) {
+  .column {
+    flex: none;
+    width: 100%;
+  }
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.justify-right {
+  justify-content: flex-end;
+}
+
+.valign-center {
+  align-items: center;
+}
+
+.text-align-center {
+  text-align: center;
+}
+
+.narrow {
+  max-width: 768px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.text-large {
+  font-size: 1.375rem;
+  line-height: 2rem;
+}
+
+main>section:not(:first-child) {
+  padding: 2.5rem 0;
+}
+
+[popover] {
+  &::backdrop {
+    background-color: rgba(0, 0, 0, .7);
+  }
+}
+
+/* Composants */
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 0;
+  z-index: 9999;
+
+  &.absolute {
+    position: absolute;
+    left: 0;
+    right: 0;
+  }
+
+  ul {
+    display: flex;
+    gap: 3.75rem;
+
+    a {
+      color: var(--grey500);
+      text-transform: uppercase;
+      text-decoration: none;
+
+      &:hover {
+        color: var(--red);
+        text-decoration: underline;
+        text-underline-offset: 1rem;
+      }
+    }
+  }
+}
+
+
+/* Homepage */
+
+.hero {
+  height: 100svh;
+  background: url('../img/visuel-principal.jpg');
+  background-size: cover;
+  background-position: center bottom;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  margin-bottom: 3.25rem;
+
+  img {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+.competence {
+  li {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+}
+
+.freelance {
+  background-color: var(--grey100);
+
+  a {
+    padding: 8px 24px;
+    text-transform: uppercase;
+    text-decoration: none;
+  }
+
+  a:nth-of-type(1) {
+    color: var(--grey500);
+    border: solid 1px var(--grey500);
+  }
+
+  a:nth-of-type(2) {
+    color: white;
+    background-color: var(--red);
+    border: solid 1px var(--red);
+    margin-left: 40px;
+  }
+}
+
+.partner {
+  padding-bottom: 100px;
+}
+
+.listImage {
+  display: flex;
+}
+
+.partnerListC {
+  display: flex;
+  justify-content: center;
+}
+
+.partnerList {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  border: black solid 1px;
+  padding: 6px 0 6px 0;
+
+  li:nth-of-type(1),
+  li:nth-of-type(2),
+  li:nth-of-type(3) {
+    border-right: solid 1px black;
+
+  }
+}
+
+footer {
+  background-color: var(--grey600);
+  color: white;
+}
+.containerFooter {
+  padding: 50px 0 50px 0;
+}
+.footerText {
+  padding-right: 5rem;
+}
+.copyright {
+  background-color: black;
+  padding: 15px 0 15px 0;
+}
+
+
+.scrollAnim {
+  position: absolute;
+  bottom: 0;
+  animation: moveAndGrow 3s infinite linear;
+}
+@keyframes moveAndGrow {
+  0% {
+    bottom: 0;
+  }
+  50% {
+    bottom: 2%;
+    transform: translateX(-50%) scale(1.2);
+  }
+  100% {
+    bottom: 0;
+  }
+}
+.partnerListC {
+  opacity: 0;
+  transform: translateY(100px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.partnerListC.active {
+  opacity: 1;
+  transform: translateY(0);
+}
